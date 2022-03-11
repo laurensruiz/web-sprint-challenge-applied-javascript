@@ -68,25 +68,25 @@ const cardAppender = (selector) => {
   .then( res => {
     console.log(res)
     res.data.articles.bootstrap.forEach(obj => {
-  const cardsObj = Card(obj);
-  cardsAppendObj.appendChild(cardsObj);
+      const cardsObj = Card(obj);
+      cardsAppendObj.appendChild(cardsObj);
     })
     res.data.articles.javascript.forEach(obj => {
       const cardsObj = Card(obj);
       cardsAppendObj.appendChild(cardsObj);
     })
     res.data.articles.jquery.forEach(obj => {
-          const cardsObj = Card(obj);
-          cardsAppendObj.appendChild(cardsObj);
+      const cardsObj = Card(obj);
+      cardsAppendObj.appendChild(cardsObj);
     })
     res.data.articles.node.forEach(obj => {
       const cardsObj = Card(obj);
       cardsAppendObj.appendChild(cardsObj);
-  })
-  res.data.articles.technology.forEach(obj => {
-    const cardsObj = Card(obj);
-    cardsAppendObj.appendChild(cardsObj);
-})
+    })
+    res.data.articles.technology.forEach(obj => {
+      const cardsObj = Card(obj);
+      cardsAppendObj.appendChild(cardsObj);
+    })
   })
   .catch(err => {
     console.error(err);
