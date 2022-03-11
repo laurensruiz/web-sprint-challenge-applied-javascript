@@ -60,6 +60,7 @@ return card
   //
 }
 
+/* ORIGINAL FUNCTION
 const cardAppender = (selector) => {
   const cardsAppendObj = document.querySelector(selector);
   axios.get("http://localhost:5000/api/articles")
@@ -96,6 +97,26 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+}*/
+
+// made shorter function 
+
+const cardAppender = (selector) => {
+  const cardsAppendObj = document.querySelector(selector);
+  axios.get("http://localhost:5000/api/articles")
+  .then( res => {
+    const articlesObj = Object.values(res.data.articles);
+    articlesObj.forEach(el => {
+      el.forEach(obj => {
+        const cardsObj = Card(obj);
+        cardsAppendObj.appendChild(cardsObj);
+      })
+    })
+  })  
+  .catch(err => {
+    console.error(err);
+  })
 }
+
 
 export { Card, cardAppender }
