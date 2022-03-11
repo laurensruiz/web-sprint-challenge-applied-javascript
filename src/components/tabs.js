@@ -38,11 +38,8 @@ const tabsAppender = (selector) => {
   const tabsAppendObj = document.querySelector(selector);
   axios.get("http://localhost:5000/api/topics")
   .then( res => {
-    console.log(res.data.topics);
-   // res.data.topics.forEach(topic => {
-  const tabsObj = Tabs(res.data.topics);
-  tabsAppendObj.appendChild(tabsObj);
-   // })
+      const tabsObj = Tabs(res.data.topics);
+      tabsAppendObj.appendChild(tabsObj);
     })
   .catch(err => {
     console.error(err);
