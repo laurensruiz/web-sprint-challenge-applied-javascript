@@ -1,22 +1,28 @@
+import axios from "axios";
+
+
 const Tabs = (topics) => {
 //constants
 const topic = document.createElement("div");
-const tab1 = document.createElement("div");
+const tab = document.createElement("div");
 const tab2 = document.createElement("div");
 const tab3 = document.createElement("div");
 
 //class
 topic.classList.add("topics");
-tab1.classList.add("tab");
+tab.classList.add("tab");
 tab2.classList.add("tab");
 tab3.classList.add("tab");
 
 //hierarchy
-topic.appendChild(tab1);
+topic.appendChild(tab);
 topic.appendChild(tab2);
 topic.appendChild(tab3);
 
 //content
+tab.textContent = topics[0];
+tab2.textContent = topics[1];
+tab3.textContent = topics[2];
 
 return topic
 
@@ -35,8 +41,40 @@ return topic
   // </div>
   //
 }
+//function for adding separate tabs 
+
+const Tabs2 = (topics) => {
+  //constants
+  const topic = document.createElement("div");
+  const tab = document.createElement("div");
+
+  //class
+  topic.classList.add("topics");
+  tab.classList.add("tab");
+  
+  //hierarchy
+  topic.appendChild(tab);
+ 
+  //content
+  tab.textContent = topics;
+
+  return topic
+    
+  }
 
 const tabsAppender = (selector) => {
+  const tabsAppendObj = document.querySelector(selector);
+  axios.get("http://localhost:5000/api/topics")
+  .then( res => {
+    res.data.topics.forEach(topic => {
+  const tabsObj = Tabs2(topic);
+  tabsAppendObj.appendChild(tabsObj);
+    })
+    })
+  .catch(err => {
+    console.error(err);
+  })
+  
   // TASK 4
   // ---------------------
   // Implement this function which takes a css selector as its only argument.
