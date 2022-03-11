@@ -1,33 +1,44 @@
 import { articles } from "../mocks/data";
+import axios from "axios";
 
-const Card = (article) => {
+const Card = ({headline, authorPhoto, authorName}) => {
+
+/*const headline = article.headline;
+const authorPhoto = article.authorPhoto;
+const authorName = article.authorName;*/
 
   //const
 const card = document.createElement("div");
-const headline = document.createElement("div");
+const headlineObj = document.createElement("div");
 const author = document.createElement("div");
 const imgContainer = document.createElement("div");
-const authorPhoto = document.createElement("img");
-const authorName = document.createElement("span");
+const authorPhotoObj = document.createElement("img");
+const authorNameObj = document.createElement("span");
 
 //class
 card.classList.add("card");
-headline.classList.add("headline");
+headlineObj.classList.add("headline");
 author.classList.add("author");
 imgContainer.classList.add("img-container");
 
 
 //hierarchy
-card.appendChild(headline);
+card.appendChild(headlineObj);
 card.appendChild(author);
-card.appendChild(authorName);
+author.appendChild(authorNameObj);
 author.appendChild(imgContainer);
-imgContainer.appendChild(authorPhoto)
+imgContainer.appendChild(authorPhotoObj);
 
 
 //Data
-headline.textContent = article.headline;
-authorPhoto.src = article.authorPhoto;
+headlineObj.textContent = headline;
+authorPhotoObj.src = authorPhoto;
+authorNameObj.textContent = `By ${authorName}`
+
+// click
+card.addEventListener("click", () => {
+  console.log(headline);
+})
 
 
 return card
@@ -52,6 +63,34 @@ return card
 }
 
 const cardAppender = (selector) => {
+  const cardsAppendObj = document.querySelector(selector);
+  axios.get("http://localhost:5000/api/articles")
+  .then( res => {
+    console.log(res)
+    res.data.articles.bootstrap.forEach(obj => {
+  const cardsObj = Card(obj);
+  cardsAppendObj.appendChild(cardsObj);
+    })
+    res.data.articles.javascript.forEach(obj => {
+      const cardsObj = Card(obj);
+      cardsAppendObj.appendChild(cardsObj);
+    })
+    res.data.articles.jquery.forEach(obj => {
+          const cardsObj = Card(obj);
+          cardsAppendObj.appendChild(cardsObj);
+    })
+    res.data.articles.node.forEach(obj => {
+      const cardsObj = Card(obj);
+      cardsAppendObj.appendChild(cardsObj);
+  })
+  res.data.articles.technology.forEach(obj => {
+    const cardsObj = Card(obj);
+    cardsAppendObj.appendChild(cardsObj);
+})
+  })
+  .catch(err => {
+    console.error(err);
+  })
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.

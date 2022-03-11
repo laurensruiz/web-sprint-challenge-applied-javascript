@@ -38,7 +38,7 @@ return header
 
 const headerAppender = (selector) => {
   const headerAppendObj = document.querySelector(selector);
-  const headerObj = Header();
+  const headerObj = Header('Lauren', 'January 5', '30 C');
   headerAppendObj.appendChild(headerObj);
   
   // TASK 2
