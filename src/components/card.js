@@ -1,4 +1,3 @@
-import { articles } from "../mocks/data";
 import axios from "axios";
 
 const Card = ({headline, authorPhoto, authorName}) => {
