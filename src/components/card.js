@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const Card = ({headline, authorPhoto, authorName}) => {
+const Card = (article) => {
 
-/*const headline = article.headline;
+const headline = article.headline;
 const authorPhoto = article.authorPhoto;
-const authorName = article.authorName;*/
+const authorName = article.authorName;
 
   //const
 const card = document.createElement("div");
