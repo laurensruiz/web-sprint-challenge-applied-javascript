@@ -1,30 +1,22 @@
 import axios from "axios";
 
-
 const Tabs = (topics) => {
-//constants
-const topic = document.createElement("div");
-const tab = document.createElement("div");
-const tab2 = document.createElement("div");
-const tab3 = document.createElement("div");
+  
+  const topic = document.createElement("div");
+  topic.classList.add("topics");
+  
+   //tabs loop
+   topics.forEach(el => {
+     const tab = document.createElement("div");
+     tab.classList.add("tab");
+     tab.textContent = el;
+     topic.appendChild(tab);
 
-//class
-topic.classList.add("topics");
-tab.classList.add("tab");
-tab2.classList.add("tab");
-tab3.classList.add("tab");
+   })
 
-//hierarchy
-topic.appendChild(tab);
-topic.appendChild(tab2);
-topic.appendChild(tab3);
-
-//content
-tab.textContent = topics[0];
-tab2.textContent = topics[1];
-tab3.textContent = topics[2];
-
-return topic
+  return topic
+    
+  }
 
   // TASK 3
   // ---------------------
@@ -40,36 +32,17 @@ return topic
   //   <div class="tab">technology</div>
   // </div>
   //
-}
-//function for adding separate tabs 
 
-const Tabs2 = (topics) => {
-  //constants
-  const topic = document.createElement("div");
-  const tab = document.createElement("div");
-
-  //class
-  topic.classList.add("topics");
-  tab.classList.add("tab");
-  
-  //hierarchy
-  topic.appendChild(tab);
- 
-  //content
-  tab.textContent = topics;
-
-  return topic
-    
-  }
 
 const tabsAppender = (selector) => {
   const tabsAppendObj = document.querySelector(selector);
   axios.get("http://localhost:5000/api/topics")
   .then( res => {
-    res.data.topics.forEach(topic => {
-  const tabsObj = Tabs2(topic);
+    console.log(res.data.topics);
+   // res.data.topics.forEach(topic => {
+  const tabsObj = Tabs(res.data.topics);
   tabsAppendObj.appendChild(tabsObj);
-    })
+   // })
     })
   .catch(err => {
     console.error(err);

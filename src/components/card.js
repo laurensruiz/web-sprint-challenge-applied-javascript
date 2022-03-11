@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const Card = (article) => {
-
 const headline = article.headline;
 const authorPhoto = article.authorPhoto;
 const authorName = article.authorName;
